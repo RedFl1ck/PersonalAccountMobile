@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">PA RUE</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="logo">LOGO</string>
+    <string name="reu">"Plekhanov Russian University \nof Economics"</string>
+    <string name="foundation">Was founded in 1907</string>
+    <string name="authorization">Authorization</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="forget_password">Forgot your password?</string>
+    <string name="registration">"Have you decided to come to us?\nRegister now!"</string>
+    <string name="text_registration">Registration</string>
+    <string name="reg_in">Register</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="patronymic">Patronymic</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="phone_num">Phone Number</string>
+    <string name="password_submit">Confirm the password</string>
+    <string name="error_empty">Field cannot be empty</string>
+    <string name="error_wrong_e_mail">Wrong E-mail</string>
+    <string name="error_wrong_phone">Wrong Phone Number</string>
+    <string name="error_short_password">Password must contain at least 4 characters</string>
+    <string name="error_match_password">Password mismatch</string>
+    <string name="recovery_password">Password recovery</string>
+    <string name="verif_code">SMS code</string>
+    <string name="submit">Confirm</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_personal_account">Personal Account</string>
+    <string name="title_schedule">Schedule</string>
+    <string name="title_news">News</string>
+    <string name="error_wrong_birth_date">Wrong Birth Date</string>
+    <string name="error_not_found">not found</string>
+    <string name="student">Student</string>
+    <string name="teacher">Teacher</string>
+    <string name="exit">Exit</string>
+    <string name="to_exit">Exit</string>
+    <string name="exit_sure">Are you sure you want to log out?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="Course">Course</string>
+    <string name="Group">Group</string>
+</resources>

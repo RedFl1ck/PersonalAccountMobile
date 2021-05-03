@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ЛК РЭУ</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="logo">LOGO</string>
+    <string name="reu">"Российский экономический\nуниверситет (РЭУ)\nим. Г.В. Плеханова"</string>
+    <string name="foundation">Основан в 1907 году</string>
+    <string name="authorization">Авторизация</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Пароль</string>
+    <string name="log_in">Войти</string>
+    <string name="forget_password">Забыли пароль?</string>
+    <string name="registration">Решили поступать к нам? Зарегистрируйтесь!</string>
+    <string name="text_registration">Регистрация</string>
+    <string name="reg_in">Зарегистрироваться</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="patronymic">Отчество</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="phone_num">Номер телефона</string>
+    <string name="password_submit">Подтвердите пароль</string>
+    <string name="error_empty">Поле не может быть пустым</string>
+    <string name="error_wrong_e_mail">Неправильный E-mail</string>
+    <string name="error_wrong_phone">Неправильный номер телефона</string>
+    <string name="error_short_password">Пароль должен содержать минимум 4 символа</string>
+    <string name="error_match_password">Пароли не совпадают</string>
+    <string name="recovery_password">Восстановление пароля</string>
+    <string name="verif_code">Код из СМС</string>
+    <string name="submit">Подтвердить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_personal_account">Личный кабинет</string>
+    <string name="title_schedule">Расписание</string>
+    <string name="title_news">Новости</string>
+    <string name="error_wrong_birth_date">Неправильная дата рождения</string>
+    <string name="error_not_found">not found</string>
+    <string name="exit">Выход</string>
+    <string name="to_exit">Выйти</string>
+    <string name="student">Студент</string>
+    <string name="teacher">Преподаватель</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="exit_sure">Вы действительно хотите выйти?</string>
+    <string name="Course">Курс</string>
+    <string name="Group">Группа</string>
+</resources>
