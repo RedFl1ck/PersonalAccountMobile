@@ -45,4 +45,5 @@
     <string name="exit_sure">Вы действительно хотите выйти?</string>
     <string name="Course">Курс</string>
     <string name="Group">Группа</string>
+    <string name="specialty">Специальность</string>
 </resources>

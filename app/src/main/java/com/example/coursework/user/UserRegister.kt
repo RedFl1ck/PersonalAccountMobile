@@ -1,18 +1,15 @@
 package com.example.coursework.user
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
-import android.util.TypedValue
-import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.example.coursework.R
 import com.google.android.material.textfield.TextInputLayout
 import java.util.regex.Pattern
@@ -26,10 +23,10 @@ class UserRegister : AppCompatActivity() {
     private var textSurname : TextInputLayout? = null
     private var textPatronymic : TextInputLayout? = null
     private var textBirthDate : TextInputLayout? = null
-    private var textPhoneNum : TextInputLayout? = null
     private var textEmail : TextInputLayout? = null
     private var textPass : TextInputLayout? = null
     private var textPassSubmit : TextInputLayout? = null
+    private var spinnerSpeciality : Spinner? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,10 +40,20 @@ class UserRegister : AppCompatActivity() {
         textSurname = findViewById(R.id.reg_surname)
         textPatronymic = findViewById(R.id.reg_patronymic)
         textBirthDate = findViewById(R.id.reg_birth_date)
-        textPhoneNum = findViewById(R.id.reg_phone_num)
         textEmail = findViewById(R.id.reg_e_mail)
         textPass = findViewById(R.id.reg_password)
         textPassSubmit = findViewById(R.id.reg_password_submit)
+        spinnerSpeciality = findViewById(R.id.register_speciality)
+
+        val arraySpinner = arrayOf(
+            "1", "2", "3", "4", "5", "6", "7"
+        )
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_spinner_item, arraySpinner
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerSpeciality?.adapter = adapter
 
         setListeners()
     }
@@ -56,7 +63,6 @@ class UserRegister : AppCompatActivity() {
         validateSurname(textSurname)
         validatePatronymic(textPatronymic)
         validateBirthDate(textBirthDate)
-        validatePhoneNum(textPhoneNum)
         validateEmail(textEmail)
         validatePass(textPass)
         validatePassSubmit(textPassSubmit)
@@ -64,7 +70,6 @@ class UserRegister : AppCompatActivity() {
             validateSurname(textSurname) &&
             validatePatronymic(textPatronymic) &&
             validateBirthDate(textBirthDate) &&
-            validatePhoneNum(textPhoneNum) &&
             validateEmail(textEmail) &&
             validatePass(textPass) &&
             validatePassSubmit(textPassSubmit)){
@@ -72,7 +77,6 @@ class UserRegister : AppCompatActivity() {
             val surname = textSurname?.editText?.text.toString()
             val patronymic = textPatronymic?.editText?.text.toString()
             val birthDate = textBirthDate?.editText?.text.toString()
-            val phoneNum = textPhoneNum?.editText?.text.toString()
             val email = textEmail?.editText?.text.toString()
             val pass = textPass?.editText?.text.toString()
             val passSubmit = textPassSubmit?.editText?.text.toString()
@@ -120,20 +124,6 @@ class UserRegister : AppCompatActivity() {
             false
         } else if (!Pattern.matches("\\d\\d.\\d\\d.\\d\\d\\d\\d", temp)){
             field?.error = resources.getString(R.string.error_wrong_birth_date)
-            false
-        } else {
-            field?.error = null
-            true
-        }
-    }
-
-    private fun validatePhoneNum(field: TextInputLayout?): Boolean {
-        val temp = field?.editText?.text.toString()
-        return if (temp.isEmpty()){
-            field?.error = resources.getString(R.string.error_empty)
-            false
-        } else if (!Patterns.PHONE.matcher(temp).matches()){
-            field?.error = resources.getString(R.string.error_wrong_phone)
             false
         } else {
             field?.error = null
@@ -243,18 +233,6 @@ class UserRegister : AppCompatActivity() {
                 validateBirthDate(textBirthDate)
             }
         })
-        textPhoneNum?.editText?.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validatePhoneNum(textPhoneNum)
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                validatePhoneNum(textPhoneNum)
-            }
-        })
         textEmail?.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 validateEmail(textEmail)
@@ -291,16 +269,6 @@ class UserRegister : AppCompatActivity() {
                 validatePassSubmit(textPassSubmit)
             }
         })
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     fun close(view: View) {

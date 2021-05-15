@@ -20,7 +20,6 @@ class PersonalAccountFragment : Fragment() {
     private var loginButton : Button? = null
     private var exitButton : Button? = null
     private var textBirthDate : TextInputLayout? = null
-    private var textPhoneNum : TextInputLayout? = null
     private var textEmail : TextInputLayout? = null
     private var textGroup : TextInputLayout? = null
     private var textCourse : TextInputLayout? = null
@@ -37,7 +36,6 @@ class PersonalAccountFragment : Fragment() {
         loginButton = root.findViewById(R.id.buttonLogUser)
         exitButton = root.findViewById(R.id.personal_exit_button)
         textBirthDate = root.findViewById(R.id.personal_birth_date)
-        textPhoneNum = root.findViewById(R.id.personal_phone_number)
         textEmail = root.findViewById(R.id.personal_email)
         textGroup = root.findViewById(R.id.personal_group)
         textCourse = root.findViewById(R.id.personal_course)
@@ -45,7 +43,6 @@ class PersonalAccountFragment : Fragment() {
 
         textName?.text = "Name Surname Patronymic"
         textBirthDate?.editText?.setText("01.01.2001")
-        textPhoneNum?.editText?.setText("+7(999)999-99-99")
         textEmail?.editText?.setText("student@mail.ru")
         textGroup?.editText?.setText("AAAA-01-01")
         textCourse?.editText?.setText("1")
@@ -70,7 +67,6 @@ class PersonalAccountFragment : Fragment() {
     private fun changeVisibility(state: Boolean) {
         exitButton?.isVisible = state
         textBirthDate?.isVisible = state
-        textPhoneNum?.isVisible = state
         textEmail?.isVisible = state
         textGroup?.isVisible = state
         textCourse?.isVisible = state

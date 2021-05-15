@@ -1,30 +1,45 @@
 package com.example.coursework.user
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.coursework.MainViewModel
+import com.example.coursework.MainViewModelFactory
 import com.example.coursework.R
+import com.example.coursework.model.UserApi
+import com.example.coursework.repository.Repository
 import com.example.coursework.user.User.Companion.user
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import org.json.JSONArray
+import org.json.JSONObject
+import java.security.AccessController.getContext
+
 
 class UserLogin : AppCompatActivity() {
 
     private var loginButton : Button? = null
     private var registerButton : Button? = null
     private var forgetPassButton : Button? = null
-
     private var textEmail : TextInputLayout? = null
     private var textPass : TextInputLayout? = null
+
+    private  lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_login)
-
         supportActionBar?.hide()
 
         loginButton = findViewById(R.id.buttonLogIN)
@@ -43,9 +58,25 @@ class UserLogin : AppCompatActivity() {
             validatePass(textPass)){
             val name = textEmail?.editText?.text.toString()
             val pass = textPass?.editText?.text.toString()
-            // TODO: login user
-            user = true
-            finish()
+            val repository = Repository()
+            val viewModelFactory = MainViewModelFactory(repository)
+            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+            viewModel.auth(UserApi(name, pass))
+            viewModel.myResponse.observe(this, Observer {
+                user = if(it.isSuccessful){
+                    Log.d("Response", it.toString())
+                    finish()
+                    true
+                }else {
+                    /*val jsonArray = JSONArray(it)
+                    val jsonObject: JSONObject = jsonArray.getJSONObject(0)
+                    val date = jsonObject.get("code")
+                    Log.d("Response", date.toString())*/
+                    Log.d("Response", it.toString())
+                    textEmail?.editText?.setText(it.toString())
+                    false
+                }
+            })
         }
     }
 
