@@ -10,7 +10,9 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.coursework.R
+import com.example.coursework.user.User
 import com.example.coursework.user.User.Companion.user
+import com.example.coursework.user.User.Companion.userLog
 import com.example.coursework.user.UserLogin
 import com.google.android.material.textfield.TextInputLayout
 
@@ -23,6 +25,8 @@ class PersonalAccountFragment : Fragment() {
     private var textEmail : TextInputLayout? = null
     private var textGroup : TextInputLayout? = null
     private var textCourse : TextInputLayout? = null
+    private var textSpecialty : TextInputLayout? = null
+    private var textStatus : TextView? = null
     private var textName : TextView? = null
 
 
@@ -40,20 +44,16 @@ class PersonalAccountFragment : Fragment() {
         textGroup = root.findViewById(R.id.personal_group)
         textCourse = root.findViewById(R.id.personal_course)
         textName = root.findViewById(R.id.personal_name)
+        textSpecialty = root.findViewById(R.id.personal_specialty)
+        textStatus = root.findViewById(R.id.personal_status)
 
-        textName?.text = "Name Surname Patronymic"
-        textBirthDate?.editText?.setText("01.01.2001")
-        textEmail?.editText?.setText("student@mail.ru")
-        textGroup?.editText?.setText("AAAA-01-01")
-        textCourse?.editText?.setText("1")
-
-        if (!user){
+        if (!userLog){
             startActivity(Intent(activity, UserLogin::class.java))
         }
 
         loginButton?.setOnClickListener {
             //TODO: exit current user
-            user = false
+            userLog = false
             startActivity(Intent(activity, UserLogin::class.java))
         }
 
@@ -77,7 +77,7 @@ class PersonalAccountFragment : Fragment() {
     private fun exitUser() {
         val builder = android.app.AlertDialog.Builder(activity)
         builder.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
-            user = false
+            userLog = false
             startActivity(Intent(activity, UserLogin::class.java))
         }
         builder.setNegativeButton(resources.getString(R.string.no)) { _, _ -> }
@@ -86,10 +86,21 @@ class PersonalAccountFragment : Fragment() {
         builder.create().show()
     }
 
+    private fun setText() {
+        textName?.text = "${user.name} ${user.surname} ${user.middleName}"
+        textBirthDate?.editText?.setText(user.birthday)
+        textEmail?.editText?.setText(user.email)
+        textGroup?.editText?.setText(user.groupName.toString())
+        textCourse?.editText?.setText(user.courseNumber.toString())
+        textSpecialty?.editText?.setText(user.specialty)
+        textStatus?.text = user.status.toString()
+    }
+
 
     override fun onStart() {
         super.onStart()
-        changeVisibility(user)
+        setText()
+        changeVisibility(userLog)
     }
 
 }

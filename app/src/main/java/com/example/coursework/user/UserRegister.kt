@@ -1,23 +1,37 @@
 package com.example.coursework.user
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.coursework.MainViewModel
+import com.example.coursework.MainViewModelFactory
 import com.example.coursework.R
+import com.example.coursework.model.RegisterApi
+import com.example.coursework.repository.Repository
+import com.example.coursework.user.User.Companion.userLog
 import com.google.android.material.textfield.TextInputLayout
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.regex.Pattern
 
 
 class UserRegister : AppCompatActivity() {
 
     private var regButton : Button? = null
+
+    private  lateinit var viewModel: MainViewModel
 
     private var textName : TextInputLayout? = null
     private var textSurname : TextInputLayout? = null
@@ -58,6 +72,7 @@ class UserRegister : AppCompatActivity() {
         setListeners()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun validation(){
         validateName(textName)
         validateSurname(textSurname)
@@ -79,8 +94,23 @@ class UserRegister : AppCompatActivity() {
             val birthDate = textBirthDate?.editText?.text.toString()
             val email = textEmail?.editText?.text.toString()
             val pass = textPass?.editText?.text.toString()
-            val passSubmit = textPassSubmit?.editText?.text.toString()
-            // TODO: send data
+            val repository = Repository()
+            val viewModelFactory = MainViewModelFactory(repository)
+            val arrayDate = birthDate.split(".").toTypedArray().joinToString("-")
+            val l = LocalDate.parse(arrayDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+            viewModel.register(RegisterApi(name, surname, patronymic, l.toString(), email, pass, "string"))
+            viewModel.myRegResponse.observe(this, Observer {
+                userLog = if(it.code() == 200){
+                    Log.d("Response", it.toString())
+                    finish()
+                    true
+                } else {
+                    Log.d("Response", it.toString())
+                    textEmail?.error = it.message()
+                    false
+                }
+            })
         }
     }
 

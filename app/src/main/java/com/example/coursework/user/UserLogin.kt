@@ -1,6 +1,5 @@
 package com.example.coursework.user
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -9,7 +8,6 @@ import android.util.Log
 import android.util.Patterns
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,12 +17,13 @@ import com.example.coursework.R
 import com.example.coursework.model.UserApi
 import com.example.coursework.repository.Repository
 import com.example.coursework.user.User.Companion.user
+import com.example.coursework.user.User.Companion.userLog
 import com.google.android.material.textfield.TextInputLayout
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import org.json.JSONArray
-import org.json.JSONObject
-import java.security.AccessController.getContext
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class UserLogin : AppCompatActivity() {
@@ -63,17 +62,24 @@ class UserLogin : AppCompatActivity() {
             viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
             viewModel.auth(UserApi(name, pass))
             viewModel.myResponse.observe(this, Observer {
-                user = if(it.isSuccessful){
-                    Log.d("Response", it.toString())
+                userLog = if(it.code() == 200){
+                    Log.d("Response", it.body().toString())
+                    user.id = it.body()?.result?.id!!
+                    user.name = it.body()?.result?.name!!
+                    user.surname = it.body()?.result?.surname!!
+                    user.middleName = it.body()?.result?.middleName!!
+                    val date = it.body()?.result?.birthday!!.toString().split('T').toTypedArray()
+                    user.birthday = date[0]
+                    user.email = it.body()?.result?.email!!
+                    user.specialty = it.body()?.result?.specialty!!
+                    user.groupName = it.body()?.result?.groupName
+                    user.courseNumber = it.body()?.result?.courseNumber
+                    user.status = it.body()?.result?.status!!
                     finish()
                     true
-                }else {
-                    /*val jsonArray = JSONArray(it)
-                    val jsonObject: JSONObject = jsonArray.getJSONObject(0)
-                    val date = jsonObject.get("code")
-                    Log.d("Response", date.toString())*/
+                } else {
                     Log.d("Response", it.toString())
-                    textEmail?.editText?.setText(it.toString())
+                    textEmail?.error = it.message()
                     false
                 }
             })
