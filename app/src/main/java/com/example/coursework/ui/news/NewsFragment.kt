@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.coursework.MainViewModel
+import com.example.coursework.MainViewModelFactory
 import com.example.coursework.R
+import com.example.coursework.repository.Repository
 
 class NewsFragment : Fragment() {
 
+    private  lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -26,11 +31,14 @@ class NewsFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val list = listOf(News(1, "Заголовок1", "Описание1"),
-            News(1, "Заголовок2", "Описание2"),
-            News(1, "Заголовок3", "Описание3"),
-            News(1, "Заголовок4", "Описание4"))
-        adapter.setData(list)
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        viewModel.getPosts()
+        viewModel.myPosts.observe(viewLifecycleOwner, Observer {
+            it.body()?.result
+            adapter.setData(it.body()?.result)
+        })
 
         return root
     }

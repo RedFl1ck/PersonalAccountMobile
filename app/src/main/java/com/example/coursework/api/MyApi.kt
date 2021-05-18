@@ -1,9 +1,6 @@
 package com.example.coursework.api
 
-import com.example.coursework.model.MineUserEntity
-import com.example.coursework.model.RegisterApi
-import com.example.coursework.model.Responce
-import com.example.coursework.model.UserApi
+import com.example.coursework.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,4 +17,7 @@ interface MyApi {
     suspend fun register(
         @Body registerApi: RegisterApi
     ): Response<Responce>
+
+    @GET("posts")
+    suspend fun getPosts(): Response<Posts>
 }

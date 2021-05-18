@@ -72,7 +72,6 @@ class UserRegister : AppCompatActivity() {
         setListeners()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun validation(){
         validateName(textName)
         validateSurname(textSurname)

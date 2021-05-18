@@ -16,14 +16,10 @@ import com.example.coursework.MainViewModelFactory
 import com.example.coursework.R
 import com.example.coursework.model.UserApi
 import com.example.coursework.repository.Repository
+import com.example.coursework.ui.about.AboutActivity
 import com.example.coursework.user.User.Companion.user
 import com.example.coursework.user.User.Companion.userLog
 import com.google.android.material.textfield.TextInputLayout
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 
 class UserLogin : AppCompatActivity() {
@@ -31,6 +27,7 @@ class UserLogin : AppCompatActivity() {
     private var loginButton : Button? = null
     private var registerButton : Button? = null
     private var forgetPassButton : Button? = null
+    private var aboutButton : Button? = null
     private var textEmail : TextInputLayout? = null
     private var textPass : TextInputLayout? = null
 
@@ -46,6 +43,7 @@ class UserLogin : AppCompatActivity() {
         forgetPassButton = findViewById(R.id.buttonForgetPass)
         textEmail = findViewById(R.id.log_e_mail)
         textPass = findViewById(R.id.log_password)
+        aboutButton = findViewById(R.id.about_button)
 
         setListeners()
     }
@@ -117,6 +115,9 @@ class UserLogin : AppCompatActivity() {
     }
 
     private fun setListeners(){
+        aboutButton?.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
+        }
         registerButton?.setOnClickListener {
             startActivity(Intent(this, UserRegister::class.java))
         }

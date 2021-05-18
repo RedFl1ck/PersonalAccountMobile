@@ -8,7 +8,7 @@ class MineUserEntity {
         val result: Result,
         val message: String,
         val success: Boolean,
-        val statusCode: Int
+        val statusCode: Int,
     )
 
     data class Result(
@@ -24,6 +24,19 @@ class MineUserEntity {
         val status: Int,
     )
 }
+
+data class Posts(
+    val result : List<Post>,
+    val message : Any?,
+    val success : Boolean,
+    val statusCode : Int
+)
+
+data class Post(
+    val id: Int,
+    val description: String,
+    val title: String
+    )
 
 data class Responce(
     val errors : List<String>,

@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coursework.R
+import com.example.coursework.model.Post
+import com.example.coursework.model.Posts
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.row_news.view.*
 
 
 class NewsListAdapter constructor(private val activity: Fragment, private val context: Context) : RecyclerView.Adapter<NewsListAdapter.MyViewHolder>() {
 
-    private var newsList = emptyList<News>()
+    private var newsList = emptyList<Post>()
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
@@ -37,8 +39,8 @@ class NewsListAdapter constructor(private val activity: Fragment, private val co
         }*/
     }
 
-    fun setData(news: List<News>){
-        this.newsList = news
+    fun setData(news: List<Post>?){
+        this.newsList = news!!
         notifyDataSetChanged()
     }
 }
