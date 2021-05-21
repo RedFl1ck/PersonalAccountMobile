@@ -95,10 +95,11 @@ class UserRegister : AppCompatActivity() {
             val pass = textPass?.editText?.text.toString()
             val repository = Repository()
             val viewModelFactory = MainViewModelFactory(repository)
-            val arrayDate = birthDate.split(".").toTypedArray().joinToString("-")
-            val l = LocalDate.parse(arrayDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+            val arrayDate = birthDate.split(".").toTypedArray()//.joinToString("-")
+            val date = "${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}"
+            //val l = LocalDate.parse(arrayDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
             viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-            viewModel.register(RegisterApi(name, surname, patronymic, l.toString(), email, pass, "string"))
+            viewModel.register(RegisterApi(name, surname, patronymic, date, email, pass, "string"))
             viewModel.myRegResponse.observe(this, Observer {
                 userLog = if(it.code() == 200){
                     Log.d("Response", it.toString())
