@@ -47,7 +47,10 @@
     <string name="specialty">Specialty</string>
     <string name="about_reu">About REU</string>
     <string name="title_activity_about">AboutActivity</string>
-    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_1">Photos</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
+    <string name="hall_about">"Сегодня рекреационный зал РЭУ считается одним из самых красивых вузовских залов Москвы и служит местом проведения ежегодного Плехановского бала, праздничных вечеров и студенческих мероприятий."</string>
+    <string name="train_about">История РЭУ - это олицетворение любви и стремление вперед.</string>
+    <string name="history_about">"1992 год стал знаковым событием в истории РЭУ.\n\nИменно в эпоху постсоветского пространства началась подготовка первых специалистов по управлению персоналом."</string>
 </resources>
