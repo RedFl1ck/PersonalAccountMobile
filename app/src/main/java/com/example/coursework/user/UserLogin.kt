@@ -110,7 +110,12 @@ class UserLogin : AppCompatActivity() {
                     }
                 })
             } else {
-                Toast.makeText(applicationContext, resources.getString(R.string.no_internet_access), Toast.LENGTH_LONG).show()
+                val builder = android.app.AlertDialog.Builder(this)
+                builder.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->}
+                builder.setTitle(resources.getString(R.string.no_internet_access))
+                builder.setMessage(resources.getString(R.string.check_internet_access))
+                builder.create().show()
+                //Toast.makeText(applicationContext, resources.getString(R.string.no_internet_access), Toast.LENGTH_LONG).show()
             }
         }
     }
