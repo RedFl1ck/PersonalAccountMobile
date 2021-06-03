@@ -128,7 +128,7 @@ class UserRegister : AppCompatActivity() {
                 val viewModelFactory = MainViewModelFactory(repository)
                 val arrayDate = birthDate.split(".").toTypedArray()//.joinToString("-")
                 val date = "${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}"
-                val speciality = spinnerSpeciality.toString()
+                val speciality = spinnerSpeciality?.selectedItem.toString()
                 //val l = LocalDate.parse(arrayDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
                 viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
                 viewModel.register(RegisterApi(name, surname, patronymic, date, email, pass, speciality))
