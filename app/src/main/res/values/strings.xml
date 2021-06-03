@@ -31,7 +31,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_personal_account">Personal Account</string>
-    <string name="title_schedule">Schedule</string>
+    <string name="title_schedule">Calendar</string>
     <string name="title_news">News</string>
     <string name="error_wrong_birth_date">Wrong Birth Date</string>
     <string name="error_not_found">not found</string>
@@ -48,9 +48,11 @@
     <string name="about_reu">About REU</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="tab_text_1">Photos</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_2">Admission</string>
+    <string name="tab_text_3">Contacts</string>
     <string name="hall_about">"Сегодня рекреационный зал РЭУ считается одним из самых красивых вузовских залов Москвы и служит местом проведения ежегодного Плехановского бала, праздничных вечеров и студенческих мероприятий."</string>
     <string name="train_about">История РЭУ - это олицетворение любви и стремление вперед.</string>
     <string name="history_about">"1992 год стал знаковым событием в истории РЭУ.\n\nИменно в эпоху постсоветского пространства началась подготовка первых специалистов по управлению персоналом."</string>
+    <string name="no_internet_access">No internet access</string>
+    <string name="check_internet_access">Check connection and try again</string>
 </resources>

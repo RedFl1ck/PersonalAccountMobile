@@ -1,6 +1,9 @@
 package com.example.coursework.user
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,8 +11,8 @@ import android.util.Log
 import android.util.Patterns
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.coursework.MainViewModel
 import com.example.coursework.MainViewModelFactory
@@ -26,7 +29,7 @@ class UserLogin : AppCompatActivity() {
 
     private var loginButton : Button? = null
     private var registerButton : Button? = null
-    private var forgetPassButton : Button? = null
+    //private var forgetPassButton : Button? = null
     private var aboutButton : Button? = null
     private var textEmail : TextInputLayout? = null
     private var textPass : TextInputLayout? = null
@@ -40,7 +43,7 @@ class UserLogin : AppCompatActivity() {
 
         loginButton = findViewById(R.id.buttonLogIN)
         registerButton = findViewById(R.id.buttonReg)
-        forgetPassButton = findViewById(R.id.buttonForgetPass)
+        //forgetPassButton = findViewById(R.id.buttonForgetPass)
         textEmail = findViewById(R.id.log_e_mail)
         textPass = findViewById(R.id.log_password)
         aboutButton = findViewById(R.id.about_button)
@@ -48,39 +51,67 @@ class UserLogin : AppCompatActivity() {
         setListeners()
     }
 
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
     private fun validation(){
         validateEmail(textEmail)
         validatePass(textPass)
         if (validateEmail(textEmail) &&
             validatePass(textPass)){
-            val name = textEmail?.editText?.text.toString()
-            val pass = textPass?.editText?.text.toString()
-            val repository = Repository()
-            val viewModelFactory = MainViewModelFactory(repository)
-            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-            viewModel.auth(UserApi(name, pass))
-            viewModel.myResponse.observe(this, Observer {
-                userLog = if(it.code() == 200){
-                    Log.d("Response", it.body().toString())
-                    user.id = it.body()?.result?.id!!
-                    user.name = it.body()?.result?.name!!
-                    user.surname = it.body()?.result?.surname!!
-                    user.middleName = it.body()?.result?.middleName!!
-                    val date = it.body()?.result?.birthday!!.toString().split('T').toTypedArray()
-                    user.birthday = date[0]
-                    user.email = it.body()?.result?.email!!
-                    user.specialty = it.body()?.result?.specialty!!
-                    user.groupName = it.body()?.result?.groupName
-                    user.courseNumber = it.body()?.result?.courseNumber
-                    user.status = it.body()?.result?.status!!
-                    finish()
-                    true
-                } else {
-                    Log.d("Response", it.toString())
-                    textEmail?.error = it.message()
-                    false
-                }
-            })
+            if(isOnline(applicationContext)) {
+                val name = textEmail?.editText?.text.toString()
+                val pass = textPass?.editText?.text.toString()
+                val repository = Repository()
+                val viewModelFactory = MainViewModelFactory(repository)
+                viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+                viewModel.auth(UserApi(name, pass))
+                viewModel.myResponse.observe(this, {
+                    userLog = if(it.code() == 200){
+                        Log.d("Response", it.body().toString())
+                        user.id = it.body()?.result?.id!!
+                        user.name = it.body()?.result?.name!!
+                        user.surname = it.body()?.result?.surname!!
+                        user.middleName = it.body()?.result?.middleName!!
+                        val date = it.body()?.result?.birthday!!.toString().split('T').toTypedArray()
+                        user.birthday = date[0]
+                        user.email = it.body()?.result?.email!!
+                        user.specialty = it.body()?.result?.specialty!!
+                        user.groupName = it.body()?.result?.groupName
+                        user.courseNumber = it.body()?.result?.courseNumber
+                        user.status = it.body()?.result?.status!!
+                        finish()
+                        true
+                    } else {
+                        Log.d("Response", it.toString())
+                        textEmail?.error = it.message()
+                        false
+                    }
+                })
+            } else {
+                Toast.makeText(applicationContext, resources.getString(R.string.no_internet_access), Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -101,16 +132,20 @@ class UserLogin : AppCompatActivity() {
 
     private fun validatePass(field: TextInputLayout?): Boolean {
         val temp = field?.editText?.text.toString()
-        return if (temp.isEmpty()){
-            field?.error = resources.getString(R.string.error_empty)
-            false
-        } else if (temp.count() < 4){
-            //TODO: auth check
-            field?.error = resources.getString(R.string.error_short_password)
-            false
-        } else {
-            field?.error = null
-            true
+        return when {
+            temp.isEmpty() -> {
+                field?.error = resources.getString(R.string.error_empty)
+                false
+            }
+            temp.count() < 4 -> {
+                //TODO: auth check
+                field?.error = resources.getString(R.string.error_short_password)
+                false
+            }
+            else -> {
+                field?.error = null
+                true
+            }
         }
     }
 
@@ -124,10 +159,10 @@ class UserLogin : AppCompatActivity() {
         loginButton?.setOnClickListener {
             validation()
         }
-        forgetPassButton?.setOnClickListener {
+        /*forgetPassButton?.setOnClickListener {
             startActivity(Intent(this, UserForgetPassword::class.java))
-        }
-        textPass?.editText?.setOnEditorActionListener { v, actionId, event ->
+        }*/
+        textPass?.editText?.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 validation()
                 true

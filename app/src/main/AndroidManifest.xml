@@ -13,10 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseWork"
         android:usesCleartextTraffic="true">
+        <activity android:name=".user.NoInternetActivity"></activity>
         <activity
             android:name=".ui.about.AboutActivity"
             android:label="@string/title_activity_about"
-            android:theme="@style/Theme.CourseWork.NoActionBar"></activity>
+            android:theme="@style/Theme.CourseWork.NoActionBar" />
         <activity
             android:name=".user.UserForgetPassword"
             android:label="" />

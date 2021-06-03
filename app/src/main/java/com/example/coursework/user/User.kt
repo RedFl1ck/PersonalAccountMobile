@@ -22,8 +22,8 @@ class User(
             "not found",
             "not found",
             "not found",
-            null,
-            null,
-            0)
+            "not found",
+            "not found",
+            1)
     }
 }

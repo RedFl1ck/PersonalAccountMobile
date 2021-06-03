@@ -1,6 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="10 причин поступать в Плехановку"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="РЭУ им. Г.В. Плеханова – один из ведущих центров образования России в сфере экономики и управления. Что это означает? И почему следует выбрать именно Плехановку? Об этом наш материал."/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Качественное образование, подтверждённое мировыми рейтингами"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ты сможешь получить экономическое и управленческое образование в одном из лучших российских вузов и стать частью научных традиций, которые начали создаваться ещё более 100 лет назад."/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. Образовательные программы с международными аккредитациями"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ряд программ РЭУ (в том числе международных), имеют аккредитацию от European Council for Business Education (ECBE), The Chartered Institute of Marketing (CIM) и Chartered Institute of Management Accountants (CIMA), а программы Master of Business Administration аккредитованы Международной Ассоциацией программ MBA."/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. Практико-ориентированный подход к образованию"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Учеба в Плехановке позволит тебе включиться в проекты одного из 900 наших партнёров-работодателей (это - крупные консалтинговые и производственные компании, а также региональные и федеральные властные структуры)."/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4. Высокая востребованность наших выпускников на рынке труда"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Востребованность выпускников Плехановки у работодателей подтверждается международным рейтингом QS World University Rankings. По показателю «Репутация у работодателей» в этом рейтинге РЭУ входит в TOP-5 вузов России. "/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5. Возможности для академической мобильности "
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="У Плехановки 177 зарубежных партнёрских университетов в 47 странах. Это означает, что любой наш студент имеет перспективную возможность обучаться экономике и управлению в крупнейших вузах Берлина, Вены, Токио и многих других городов мира. "/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6. Программы «двойных дипломов»"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="В Плехановке можно пройти обучение по 25 программам «двойных дипломов» с вузами-партнерами из других стран. Поэтому к моменту выпуска ты сможешь стать обладателем  двух (а иногда и трёх) дипломов, один из которых – от ведущего иностранного вуза. "/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7. Активная внеучебная жизнь"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Участие в «Лиге КВН», Плехановском балу, выездных школах и других мероприятиях  — всё это предоставляет широкий спектр возможностей для получения практического опыта и надпредметных компетенций. В современных экономических условиях такой опыт может оказаться определяющим для развития успешной карьеры. "/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8. Возможности получения дополнительных профессиональных компетенций"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Плехановцам доступны большое количество программ дополнительного образования в сфере экономики, управления, финансов, IT и маркетинга, а также возможность пройти подготовку для сдачи международных языковых экзаменов (IELTS, TOEFL и др.) и курсы для получения дополнительной специальности переводчика в сфере профессиональной коммуникации. Привлекательно?"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9. Современный учебный кампус в центре Москвы "
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Университетский кампус Плехановки расположен в одной минуте ходьбы от м. «Серпуховская», в живописном центре Москвы. Удобно?"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10. Развитая инфраструктура Плехановки"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="В Плехановке работают более 10 спортивных секций, множество творческих объединений (по танцам, музыке, театральному искусству). На территории кампуса, кроме бассейна и пяти спортивных залов, работает Дом культуры с большим зрительным залом и современный библиотечный центр. "/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ждем тебя в Плехановском университете!!!"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+
+</ScrollView>

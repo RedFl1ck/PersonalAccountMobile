@@ -1,6 +1,468 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="В связи с тем, что идет переадресация звонков, просим вас звонить дольше. Если вдруг один из номеров недоступен, позвоните на другой номер из данного списка. Мы с радостью ответим на ваши вопросы."
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="По вопросам поступления на программы бакалавриата, специалитета и магистратуры"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Адрес"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="117997, г. Москва, Cтремянный пер., д. 36, (3 кор), эт. 2, ауд. 204, 205, 207"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Телефон"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+7 (495) 958-28-31, +7 (499) 237-86-56 8 (495) 800-12-00 доб.: 1195, 1139, 2135, 2130, 2147, 1373, 2127, 2134, 2122"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Эл. почта"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="abiturient@rea.ru"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Приемные часы"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вне приемной кампании - в будние дни с 9:00 до 17:00 \nВо время приемной кампании - в будние дни с 9:30 до 17:00, \nв субботу с 10:00 до 14:00."/>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="По вопросам подготовительных курсов по подготовке к ОГЭ, ЕГЭ, поступлению в Экономический лицей и магистратуру"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Адрес"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="​117997, г. Москва, Cтремянный пер., д. 36, (3 кор), ауд. 204, 205"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Телефон"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+7 (985) 455-75-69, 8 (495) 800-12-00 доб.: 2126"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Эл. почта"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REU-Kurs@rea.ru"/>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="По вопросам поступления в Экономический лицей"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Адрес"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="117997, г. Москва, ул. Зацепа, д. 41, (4 кор), эт. 3, ауд. 307"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Телефон"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8-495-280-03-67 (доб. 25-56)"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Эл. почта"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lyceum@rea.ru"/>
+        </LinearLayout>
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="По вопросам поступления в аспирантуру"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Адрес"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="117997, г. Москва, Стремянный пер., 36 (3 кор.), эт. 3, ауд. 359"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Телефон"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+7 (499) 237-86-58, 8 (495) 800-12-00 доб. 1801"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Эл. почта"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="uapnk@rea.ru"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="По вопросам получения дополнительного образования"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Адрес"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="117997, г. Москва, Cтремянный пер., д. 38, (5 кор), эт. 2, ауд. 204"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Телефон"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+7 (499) 237-13-52, 8 (495) 800-12-00 (1750)"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Эл. почта"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="crdpo@rea.ru"/>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="По вопросам Плехановской олимпиады школьников"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Адрес"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="117997, г. Москва, Cтремянный пер., д. 36, (3 кор), эт. 2, ауд. 207"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Телефон"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="​+7 (495) 800-12-00 доб. 2127 "/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Эл. почта"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="olymp@rea.ru"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</ScrollView>

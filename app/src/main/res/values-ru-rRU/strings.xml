@@ -32,7 +32,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_personal_account">Личный кабинет</string>
-    <string name="title_schedule">Расписание</string>
+    <string name="title_schedule">Календарь</string>
     <string name="title_news">Новости</string>
     <string name="error_wrong_birth_date">Неправильная дата рождения</string>
     <string name="error_not_found">not found</string>
@@ -48,6 +48,8 @@
     <string name="specialty">Специальность</string>
     <string name="about_reu">О нашем вузе</string>
     <string name="tab_text_1">Фотографии</string>
-    <string name="tab_text_2">Вкладка 2</string>
-    <string name="tab_text_3">Вкладка 3</string>
+    <string name="tab_text_2">Поступление</string>
+    <string name="tab_text_3">Контакты</string>
+    <string name="no_internet_access">Нет доступа к интернету</string>
+    <string name="check_internet_access">Проверьте подключение и попробуйте снова</string>
 </resources>

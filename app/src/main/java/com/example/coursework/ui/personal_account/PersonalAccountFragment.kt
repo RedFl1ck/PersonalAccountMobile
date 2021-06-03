@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.coursework.R
-import com.example.coursework.user.User
 import com.example.coursework.user.User.Companion.user
 import com.example.coursework.user.User.Companion.userLog
 import com.example.coursework.user.UserLogin
@@ -91,9 +90,15 @@ class PersonalAccountFragment : Fragment() {
         textBirthDate?.editText?.setText(user.birthday)
         textEmail?.editText?.setText(user.email)
         textGroup?.editText?.setText(user.groupName.toString())
-        textCourse?.editText?.setText(user.courseNumber.toString())
+        val course = user.courseNumber.toString().split('.')
+        textCourse?.editText?.setText(course[0])
         textSpecialty?.editText?.setText(user.specialty)
-        textStatus?.text = user.status.toString()
+        textStatus?.text = when (user.status) {
+            0 -> "Студент"
+            1 -> "Завяка на рассмотрении"
+            2 -> "Не зачислен"
+            else -> "Нет информации"
+        }
     }
 
 

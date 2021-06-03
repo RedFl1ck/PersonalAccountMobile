@@ -1,6 +1,5 @@
 package com.example.coursework.user
 
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,9 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.coursework.MainViewModel
 import com.example.coursework.MainViewModelFactory
@@ -22,8 +19,6 @@ import com.example.coursework.model.RegisterApi
 import com.example.coursework.repository.Repository
 import com.example.coursework.user.User.Companion.userLog
 import com.google.android.material.textfield.TextInputLayout
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.regex.Pattern
 
 
@@ -60,7 +55,14 @@ class UserRegister : AppCompatActivity() {
         spinnerSpeciality = findViewById(R.id.register_speciality)
 
         val arraySpinner = arrayOf(
-            "1", "2", "3", "4", "5", "6", "7"
+            "Учетно-финансовый факультет",
+            "Факультет менеджмента",
+            "Торгово-технологическое отделение техникума",
+            "Отделение информационно-коммуникативных технологий техникума",
+            "Кафедра экономического анализа и статистики",
+            "Кафедра социальных и гуманитарных дисциплин",
+            "Кафедра технологии питания и менеджмента",
+            "Кафедра товароведения и экспертизы товаров"
         )
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             this,
@@ -97,10 +99,11 @@ class UserRegister : AppCompatActivity() {
             val viewModelFactory = MainViewModelFactory(repository)
             val arrayDate = birthDate.split(".").toTypedArray()//.joinToString("-")
             val date = "${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}"
+            val speciality = spinnerSpeciality.toString()
             //val l = LocalDate.parse(arrayDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
             viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-            viewModel.register(RegisterApi(name, surname, patronymic, date, email, pass, "string"))
-            viewModel.myRegResponse.observe(this, Observer {
+            viewModel.register(RegisterApi(name, surname, patronymic, date, email, pass, speciality))
+            viewModel.myRegResponse.observe(this, {
                 userLog = if(it.code() == 200){
                     Log.d("Response", it.toString())
                     finish()
@@ -177,29 +180,37 @@ class UserRegister : AppCompatActivity() {
 
     private fun validatePass(field: TextInputLayout?): Boolean {
         val temp = field?.editText?.text.toString()
-        return if (temp.isEmpty()){
-            field?.error = resources.getString(R.string.error_empty)
-            false
-        } else if (temp.count() < 4){
-            field?.error = resources.getString(R.string.error_short_password)
-            false
-        } else {
-            field?.error = null
-            true
+        return when {
+            temp.isEmpty() -> {
+                field?.error = resources.getString(R.string.error_empty)
+                false
+            }
+            temp.count() < 4 -> {
+                field?.error = resources.getString(R.string.error_short_password)
+                false
+            }
+            else -> {
+                field?.error = null
+                true
+            }
         }
     }
 
     private fun validatePassSubmit(field: TextInputLayout?): Boolean {
         val temp = field?.editText?.text.toString()
-        return if (temp.isEmpty()){
-            field?.error = resources.getString(R.string.error_empty)
-            false
-        } else if (temp != textPass?.editText?.text.toString()){
-            field?.error = resources.getString(R.string.error_match_password)
-            false
-        } else {
-            field?.error = null
-            true
+        return when {
+            temp.isEmpty() -> {
+                field?.error = resources.getString(R.string.error_empty)
+                false
+            }
+            temp != textPass?.editText?.text.toString() -> {
+                field?.error = resources.getString(R.string.error_match_password)
+                false
+            }
+            else -> {
+                field?.error = null
+                true
+            }
         }
     }
 
@@ -207,7 +218,7 @@ class UserRegister : AppCompatActivity() {
         regButton?.setOnClickListener {
             validation()
         }
-        textPassSubmit?.editText?.setOnEditorActionListener { v, actionId, event ->
+        textPassSubmit?.editText?.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 validation()
                 true
