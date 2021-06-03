@@ -1,5 +1,8 @@
 package com.example.coursework.user
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +19,7 @@ import com.example.coursework.MainViewModel
 import com.example.coursework.MainViewModelFactory
 import com.example.coursework.R
 import com.example.coursework.model.RegisterApi
+import com.example.coursework.model.UserApi
 import com.example.coursework.repository.Repository
 import com.example.coursework.user.User.Companion.userLog
 import com.google.android.material.textfield.TextInputLayout
@@ -74,6 +78,30 @@ class UserRegister : AppCompatActivity() {
         setListeners()
     }
 
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
     private fun validation(){
         validateName(textName)
         validateSurname(textSurname)
@@ -89,31 +117,39 @@ class UserRegister : AppCompatActivity() {
             validateEmail(textEmail) &&
             validatePass(textPass) &&
             validatePassSubmit(textPassSubmit)){
-            val name = textName?.editText?.text.toString()
-            val surname = textSurname?.editText?.text.toString()
-            val patronymic = textPatronymic?.editText?.text.toString()
-            val birthDate = textBirthDate?.editText?.text.toString()
-            val email = textEmail?.editText?.text.toString()
-            val pass = textPass?.editText?.text.toString()
-            val repository = Repository()
-            val viewModelFactory = MainViewModelFactory(repository)
-            val arrayDate = birthDate.split(".").toTypedArray()//.joinToString("-")
-            val date = "${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}"
-            val speciality = spinnerSpeciality.toString()
-            //val l = LocalDate.parse(arrayDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
-            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-            viewModel.register(RegisterApi(name, surname, patronymic, date, email, pass, speciality))
-            viewModel.myRegResponse.observe(this, {
-                userLog = if(it.code() == 200){
-                    Log.d("Response", it.toString())
-                    finish()
-                    true
-                } else {
-                    Log.d("Response", it.toString())
-                    textEmail?.error = it.message()
-                    false
-                }
-            })
+            if(isOnline(applicationContext)) {
+                val name = textName?.editText?.text.toString()
+                val surname = textSurname?.editText?.text.toString()
+                val patronymic = textPatronymic?.editText?.text.toString()
+                val birthDate = textBirthDate?.editText?.text.toString()
+                val email = textEmail?.editText?.text.toString()
+                val pass = textPass?.editText?.text.toString()
+                val repository = Repository()
+                val viewModelFactory = MainViewModelFactory(repository)
+                val arrayDate = birthDate.split(".").toTypedArray()//.joinToString("-")
+                val date = "${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}"
+                val speciality = spinnerSpeciality.toString()
+                //val l = LocalDate.parse(arrayDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+                viewModel.register(RegisterApi(name, surname, patronymic, date, email, pass, speciality))
+                viewModel.myRegResponse.observe(this, {
+                    userLog = if(it.code() == 200){
+                        Log.d("Response", it.toString())
+                        finish()
+                        true
+                    } else {
+                        Log.d("Response", it.toString())
+                        textEmail?.error = it.message()
+                        false
+                    }
+                })
+            } else {
+                val builder = android.app.AlertDialog.Builder(this)
+                builder.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->}
+                builder.setTitle(resources.getString(R.string.no_internet_access))
+                builder.setMessage(resources.getString(R.string.check_internet_access))
+                builder.create().show()
+            }
         }
     }
 
